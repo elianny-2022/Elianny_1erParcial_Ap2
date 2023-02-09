@@ -1,6 +1,7 @@
 package com.ucne.proj_1erparcial_ap2.ui.prestamo
 
 import androidx.compose.foundation.layout.*
+//import androidx.compose.foundation.layout.BoxScopeInstance.align
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -21,7 +22,8 @@ import com.ucne.proj_1erparcial_ap2.data.local.entity.PrestamoEntity
 fun PrestamoScreen(viewModel: PrestamoViewModel = hiltViewModel()) {
     Column(Modifier.fillMaxSize()) {
         PrestamoBody(viewModel )
-            val uiState by viewModel.uiState.collectAsState(initial = emptyList<PrestamoEntity>())
+            val uiState by viewModel.uiState.collectAsState()
+        PrestamoListScreen( uiState.prestamosList)
 
     }
 }
@@ -65,14 +67,22 @@ private fun PrestamoBody(
             icon = { Icon(imageVector = Icons.Filled.Save, contentDescription
             = "Guardar") },
             onClick = { viewModel.insertar() }
+        
         )
     }
 }
 @Composable
 private fun PrestamoListScreen(prestamos: List<PrestamoEntity>){
     LazyColumn {
+        item { 
+            Text(text = "Lista de Prestamos",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.fillMaxWidth())
+        }
   items(prestamos){
+    
           pre-> PrestamoRow(pre)
+      
          }
     }
 }
@@ -85,18 +95,20 @@ private fun PrestamoRow(prestamo: PrestamoEntity) {
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = prestamo.deudor,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.weight(3f)
-            )
-            Text(
-                text = prestamo.concepto,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.weight(3f)
-            )
+                .fillMaxWidth()) {
+            Column(){
+                Text(
+                    text = prestamo.deudor,
+                    style = MaterialTheme.typography.titleLarge,
+                    //modifier = Modifier.weight(3f)
+                )
+                Text(
+                    text = prestamo.concepto,
+                    style = MaterialTheme.typography.titleLarge,
+                   // modifier = Modifier.weight(3f)
+                )
+            }
+
             Text(
                 String.format("%.2f", prestamo.monto),
                 textAlign = TextAlign.End,
