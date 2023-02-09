@@ -13,6 +13,5 @@ class PrestamoRepository @Inject constructor(
     }
     //suspend fun delete(deudor: PrestamoEntity) = prestamoDao.delete(deudor)
 
-    suspend fun fin(deudorId: Int) = prestamoDao.find(deudorId )
     fun getList(): Flow<List<PrestamoEntity>> = prestamoDao.getList()
 }

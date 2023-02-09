@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    // TODO: Inyectar la base de datos
+
     @Singleton
     @Provides
     fun providesDatabase(@ApplicationContext context: Context): PrestamosDb {
@@ -28,7 +28,6 @@ object AppModule {
             .build()
     }
 
-    // TODO: Inyectar el DAO 
    @Singleton
     @Provides
     fun providesOcupacionDao(db: PrestamosDb) = db.prestamoDao
