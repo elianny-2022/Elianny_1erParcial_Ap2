@@ -129,14 +129,13 @@ private fun PrestamoBody(
         Spacer(modifier = Modifier.height(30.dp))
         ExtendedFloatingActionButton(
             modifier = Modifier
-                .align(alignment = Alignment.CenterHorizontally)
-                .padding(start = 12.dp),
+                .size(100.dp, 80.dp)
+                .align( Alignment.End)
+                .wrapContentSize(Alignment.Center),
             shape = CircleShape,
             text = {
                 Text(
-                    "Guardar",
-                    fontStyle = FontStyle.Italic,
-                    fontWeight = FontWeight.Bold
+                    ""
                 )
             },
             icon = {
